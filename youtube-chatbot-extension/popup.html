@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube Chatbot</title>
+    <style>
+        body { width: 320px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 15px; background-color: #f4f7f6; color: #333; }
+        h3 { color: #2c3e50; text-align: center; margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            font-size: 14px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        button:hover { background-color: #0056b3; }
+        button:disabled { background-color: #cccccc; cursor: not-allowed; }
+        #response {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9f5ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 5px;
+            min-height: 80px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #333;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            overflow-y: auto; /* Enable scrolling for long responses */
+            max-height: 250px; /* Limit height for responses */
+        }
+        .loading {
+            text-align: center;
+            color: #777;
+            font-style: italic;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+    <h3>YouTube Video Chatbot</h3>
+    <label for="videoId">YouTube Video ID:</label>
+    <input type="text" id="videoId" placeholder="e.g., iv-5mZ_9CPY">
+    <label for="question">Your Question:</label>
+    <input type="text" id="question" placeholder="Summarize the video">
+    <button id="askButton">Ask Video</button>
+    <div id="response"></div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

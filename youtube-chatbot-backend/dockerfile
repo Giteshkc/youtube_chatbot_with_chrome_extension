@@ -1,0 +1,23 @@
+# Use the official lightweight Python image.
+# https://hub.docker.com/_/python
+FROM python:3.9-slim-buster
+
+# Allow statements and log messages to immediately appear in the Cloud Run logs
+ENV PYTHONUNBUFFERED True
+
+# Copy local code to the container image.
+WORKDIR /app
+COPY . /app
+
+# Install production dependencies.
+RUN pip install -r requirements.txt
+
+# Port to listen on. Cloud Run uses the PORT environment variable.
+# Default to 8080.
+ENV PORT 8080
+
+# Run the web service on container startup.
+# Gunicorn is a production-ready WSGI HTTP server for Python.
+# It's better than Flask's built-in server for production.
+# The 'app:app' refers to the 'app' variable in 'app.py'
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 app:app
